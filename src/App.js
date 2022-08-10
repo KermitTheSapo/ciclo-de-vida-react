@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+//Crie um Component de Class
+//Crie um Ciclo de vida e uma função de clique para atualizar o titulo da sua pagina baseado no seu state
+//Crie uma condicional para fazer a alteração voltar para o estado inicial
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import React, {Component} from "react";
+
+export default class app extends Component{
+  state = {
+    titulo: "david"
+  }
+
+  componentDidMount(){
+    document.title = this.state.titulo
+  }
+  componentDidUpdate(){
+    document.title = this.state.titulo
+  }
+
+  handleClick = () => {
+    this.setState({
+      titulo: this.state.titulo === "david" ? "joão" : "david"
+    })
+  }
+
+  render(){
+    return(
+      <div>
+        <h1>{this.state.titulo}</h1>
+        <button onClick={() => this.handleClick()}>Muda Nome</button>
+      </div>
+    )
+  }
 }
-
-export default App;
